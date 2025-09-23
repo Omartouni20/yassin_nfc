@@ -6,104 +6,120 @@
   <title>Yassin El Morshedy</title>
   <style>
     :root {
-      --bg:#0a0a0a;
-      --primary:#3A986C;
+      --primary:#3A986C;       /* الأخضر */
+      --light-primary:#E9F7F1; /* أخضر فاتح */
+      --bg-light:#F7FAF9;
       --white:#ffffff;
-      --muted:#9aa4b2;
+      --text:#222;
+      --muted:#666;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
+
     body {
-      font-family: 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, var(--bg-light), var(--white));
+      margin:0;
+      padding:0;
+      color:var(--text);
     }
 
-    /* ===== Cover ===== */
     .cover {
-      width: 100%;
-      height: 220px;
-      background: linear-gradient(270deg, #3A986C, #0a0a0a, #1f1f1f);
-      background-size: 400% 400%;
-      animation: gradientMove 10s ease infinite;
-      position: relative;
-    }
-    @keyframes gradientMove {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+      width:100%;
+      height:180px;
+      background: linear-gradient(120deg, var(--primary) 0%, #a1e6c6 50%, var(--bg-light) 100%);
+      background-size:200% 200%;
+      animation: moveBg 10s ease infinite;
     }
 
-    /* ===== Card ===== */
+    @keyframes moveBg {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
     .card {
-      max-width: 420px;
-      margin: 40px auto;
-      background: #111;
-      border-radius: 24px;
-      padding: 100px 24px 40px; /* space for profile pic */
-      box-shadow: 0 8px 28px rgba(0,0,0,.7);
-      text-align: center;
-      position: relative;
+      max-width:600px;
+      margin:-70px auto 30px;
+      background:var(--white);
+      border-radius:22px;
+      padding:90px 24px 30px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      position:relative;
+      text-align:center;
     }
 
-    /* ===== Profile Pic ===== */
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 4px solid var(--white);
-background: #ccc url('images/Yassin-removebg-preview.png') center/cover no-repeat;
-  position: absolute;
-  top: -75px; /* فوق الكارت بالكامل */
-  left: 50%;
-  transform: translateX(-50%);
-  box-shadow: 0 0 25px rgba(58,152,108,0.7);
-  transition: transform .4s ease;
-}
-.profile-pic:hover {
-  transform: translateX(-50%) scale(1.05);
-}
-
-    h1 {font-size: 24px; font-weight: 700; margin-bottom: 6px}
-    p.title {color: var(--primary); font-weight: 600; margin-bottom: 22px; font-size: 15px}
-
-    /* ===== Icons ===== */
-    .icons-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: center;
-      margin-top: 20px;
+    .profile-pic {
+      width:130px; height:130px;
+      border-radius:50%;
+      border:4px solid #fff;
+      background:#ccc url('images/Yassin-removebg-preview.png') center/cover no-repeat;
+      position:absolute; top:-65px; left:50%; transform:translateX(-50%);
+      box-shadow:0 5px 18px rgba(58,152,108,.3);
+      animation: float 4s ease-in-out infinite;
+      transition:.4s ease;
     }
-    .icon {
-      width: 64px; height: 64px;
-      border-radius: 18px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      cursor: pointer;
+    .profile-pic:hover { transform:translateX(-50%) scale(1.06) }
+
+    @keyframes float {
+      0%,100% { transform:translateX(-50%) translateY(0) }
+      50% { transform:translateX(-50%) translateY(-6px) }
+    }
+
+    h1 {font-size:26px; font-weight:800}
+    .title {margin-top:6px; color:var(--primary); font-weight:600}
+
+    .actions {
+      margin:26px auto;
+      display:flex; flex-direction:column; gap:12px;
+    }
+
+    .action {
+      display:flex; align-items:center; gap:14px;
+      padding:14px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      color:inherit;
+      background:#fafafa;
+      border:1px solid #eee;
       transition: all .35s ease;
-      position: relative;
-    }
-    .icon svg {
-      width: 28px; height: 28px;
-      stroke: var(--white);
-      stroke-width: 1.6;
-      fill: none;
-      transition: transform .35s ease, stroke .35s ease;
-    }
-    .icon:hover {
-      transform: translateY(-6px) scale(1.15);
-      background: var(--primary);
-      box-shadow: 0 0 18px rgba(58,152,108,0.8);
-    }
-    .icon:hover svg {
-      stroke: #fff;
-      transform: scale(1.25) rotate(8deg);
     }
 
-    .meta {margin-top: 22px; font-size: 14px; color: var(--muted)}
-    footer {margin-top: 24px; font-size: 12px; color: var(--muted)}
+    .action:hover {
+      transform:translateY(-3px) scale(1.02);
+      background: linear-gradient(90deg, var(--light-primary), var(--white));
+      box-shadow:0 8px 20px rgba(58,152,108,.18);
+      border-color: var(--primary);
+    }
+
+    .icon {
+      width:44px; height:44px;
+      border-radius:12px;
+      background:var(--light-primary);
+      display:grid; place-items:center;
+      transition:.3s ease;
+    }
+
+    .icon svg {
+      width:22px; height:22px;
+      stroke:var(--primary); fill:none; stroke-width:1.6;
+      transition:.3s ease;
+    }
+
+    .action:hover .icon {
+      background:var(--primary);
+      animation:pulse 1s infinite;
+    }
+    .action:hover .icon svg { stroke:#fff }
+
+    @keyframes pulse {
+      0%{box-shadow:0 0 0 0 rgba(58,152,108,.6)}
+      70%{box-shadow:0 0 0 12px rgba(58,152,108,0)}
+      100%{box-shadow:0 0 0 0 rgba(58,152,108,0)}
+    }
+
+    .label {font-weight:600; font-size:15px}
+    .hint {font-size:13px; color:var(--muted)}
+
+    .meta {margin-top:16px; font-size:13px; color:var(--muted)}
   </style>
 </head>
 <body>
@@ -114,68 +130,71 @@ background: #ccc url('images/Yassin-removebg-preview.png') center/cover no-repea
     <h1 id="fullName">Yassin El Morshedy</h1>
     <p class="title" id="jobTitle">International Markets Sales Manager</p>
 
-    <div class="icons-grid">
-      <a class="icon" id="websiteBtn" target="_blank" title="Website">
-        <!-- Globe -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c2.5 4 2.5 16 0 20M12 2c-2.5 4-2.5 16 0 20"/></svg>
+    <nav class="actions">
+      <a class="action" id="websiteBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M2.8 12h18.4M12 2.8c2.2 3.5 2.2 15 0 18.4M12 2.8C9.8 6.3 9.8 17.8 12 21.2"/></svg></span>
+        <div><div class="label">Website</div><div class="hint">alhanaaagri.com</div></div>
       </a>
-      <a class="icon" id="callBtn" title="Call">
-        <!-- Phone -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 16.92V21a1 1 0 01-1.1 1 19.86 19.86 0 01-8.63-3.07A19.5 19.5 0 015.07 11.7 19.86 19.86 0 012 3.1 1 1 0 013 2h4.09a1 1 0 011 .75c.2.84.48 1.65.83 2.42a1 1 0 01-.23 1.11l-2.2 2.2a16 16 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.23c.77.35 1.58.63 2.42.83a1 1 0 01.75 1V16.92z"/></svg>
-      </a>
-      <a class="icon" id="emailBtn" title="Email">
-        <!-- Mail -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg>
-      </a>
-      <a class="icon" id="fbBtn" target="_blank" title="Facebook">
-        <!-- Facebook -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-      </a>
-      <a class="icon" id="liBtn" target="_blank" title="LinkedIn">
-        <!-- LinkedIn -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      </a>
-      <a class="icon" id="igBtn" target="_blank" title="Instagram">
-        <!-- Instagram -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="18" cy="6" r="1"/></svg>
-      </a>
-      <a class="icon" id="waBtn" target="_blank" title="WhatsApp">
-        <!-- WhatsApp -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 3A10.9 10.9 0 013 20l-1 4 4-1A10.9 10.9 0 1120 3z"/><path d="M16.24 14.37a1.32 1.32 0 00-1.87-.31l-.54.4a.26.26 0 01-.3 0c-1-.5-1.8-1.2-2.6-2a.26.26 0 010-.3l.4-.54a1.32 1.32 0 00-.31-1.87l-1.5-1a1.32 1.32 0 00-1.87.31c-.5.72-.78 1.6-.78 2.5 0 2.9 2.35 5.25 5.25 5.25.9 0 1.78-.28 2.5-.78a1.32 1.32 0 00.31-1.87l-1-1.5z"/></svg>
-      </a>
-      <a class="icon" id="locBtn" target="_blank" title="Location">
-        <!-- Location -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 00-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 00-8-8z"/></svg>
-      </a>
-    </div>
 
-<div class="meta" id="address">Al-Hanaa Agricultural Development — Minya</div>
-    <footer>NFC Profile — Yassin El Morshedy</footer>
+      <a class="action" id="callBtn">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M21 16.5v3a1.5 1.5 0 0 1-1.7 1.5 17 17 0 0 1-7.4-2.7A17 17 0 0 1 5.7 10.1 17 17 0 0 1 3 2.7 1.5 1.5 0 0 1 4.5 1h3a1.5 1.5 0 0 1 1.5 1.2c.17.9.43 1.7.8 2.5.16.33.1.72-.18 1l-2 2a14 14 0 0 0 6 6l2-2c.28-.28.67-.34 1-.18.8.37 1.6.63 2.5.8A1.5 1.5 0 0 1 21 16.5Z"/></svg></span>
+        <div><div class="label">Call Now</div><div class="hint">+20 111 116 6756</div></div>
+      </a>
+
+      <a class="action" id="waBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M20 3A10.9 10.9 0 013 20l-1 4 4-1A10.9 10.9 0 1120 3z"/><path d="M16.24 14.37a1.32 1.32 0 00-1.87-.31l-.54.4a.26.26 0 01-.3 0c-1-.5-1.8-1.2-2.6-2a.26.26 0 010-.3l.4-.54a1.32 1.32 0 00-.31-1.87l-1.5-1a1.32 1.32 0 00-1.87.31c-.5.72-.78 1.6-.78 2.5 0 2.9 2.35 5.25 5.25 5.25.9 0 1.78-.28 2.5-.78a1.32 1.32 0 00.31-1.87l-1-1.5z"/></svg></span>
+        <div><div class="label">WhatsApp</div><div class="hint">+20 111 116 6756</div></div>
+      </a>
+
+      <a class="action" id="emailBtn">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg></span>
+        <div><div class="label">Email</div><div class="hint">info@alhanaaagri.com</div></div>
+      </a>
+
+      <a class="action" id="fbBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></span>
+        <div><div class="label">Facebook</div><div class="hint">Company Page</div></div>
+      </a>
+
+      <a class="action" id="liBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+        <div><div class="label">LinkedIn</div><div class="hint">Professional</div></div>
+      </a>
+
+      <a class="action" id="igBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.6"/><circle cx="18" cy="6" r="1"/></svg></span>
+        <div><div class="label">Instagram</div><div class="hint">@alhanaa.eg</div></div>
+      </a>
+
+      <a class="action" id="locBtn" target="_blank">
+        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 5 8 12 8 12s8-7 8-12a8 8 0 0 0-8-8Z"/></svg></span>
+        <div><div class="label">Location</div><div class="hint">Al-Hanaa, Minya</div></div>
+      </a>
+    </nav>
+
+    <div class="meta">NFC Profile — Yassin El Morshedy</div>
   </div>
 
   <script>
     const profile = {
-      fullName: 'Yassin El Morshedy',
-      jobTitle: 'International Markets Sales Manager',
       phone: '+201111166756',
+      whatsappE164: '201111166756',
       email: 'info@alhanaaagri.com',
       website: 'https://alhanaaagri.com/',
-      facebook: 'https://web.facebook.com/profile.php?id=100064835928360&_rdc=1&_rdr#',
-      linkedin: 'https://www.linkedin.com/company/al-hanaa-agricultural-development?originalSubdomain=eg',
-      instagram: 'https://www.instagram.com/alhanaa.eg?igsh=MXRvc2l4amJkNzRwYw%3D%3D&utm_source=qr',
-      whatsappNumber: 'wa.me/message/AZ3URGWZVSYVB1',
+      facebook: 'https://web.facebook.com/profile.php?id=100064835928360',
+      linkedin: 'https://www.linkedin.com/company/al-hanaa-agricultural-development',
+      instagram: 'https://www.instagram.com/alhanaa.eg',
       locationUrl: 'https://www.google.com/maps?q=شركة+الهناء+للتنمية+الزراعية،+المنيا'
-    }
-    document.getElementById('fullName').textContent = profile.fullName
-    document.getElementById('jobTitle').textContent = profile.jobTitle
-    document.getElementById('callBtn').href = `tel:${profile.phone}`
-    document.getElementById('emailBtn').href = `mailto:${profile.email}`
-    document.getElementById('websiteBtn').href = profile.website
-    document.getElementById('fbBtn').href = profile.facebook
-    document.getElementById('liBtn').href = profile.linkedin
-    document.getElementById('igBtn').href = profile.instagram
-    document.getElementById('waBtn').href = profile.whatsappNumber
-    document.getElementById('locBtn').href = profile.locationUrl
+    };
+
+    document.getElementById('websiteBtn').href = profile.website;
+    document.getElementById('callBtn').href = `tel:${profile.phone}`;
+    document.getElementById('waBtn').href = `https://wa.me/${profile.whatsappE164}`;
+    document.getElementById('emailBtn').href = `mailto:${profile.email}`;
+    document.getElementById('fbBtn').href = profile.facebook;
+    document.getElementById('liBtn').href = profile.linkedin;
+    document.getElementById('igBtn').href = profile.instagram;
+    document.getElementById('locBtn').href = profile.locationUrl;
   </script>
 </body>
 </html>
